@@ -1,0 +1,12 @@
+[
+  {
+    "id": "student1",
+    "display_name": "New Student",
+    "level": "A1",
+    "speech_speed": "normal",
+    "english_help": "high",
+    "correction_style": "gentle",
+    "allowed_tenses": ["present"],
+    "challenge_level": "low"
+  }
+]
