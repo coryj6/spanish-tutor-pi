@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanish Tutor Pi</title>
+    <style>
+        body { font-family: "Inter", -apple-system, sans-serif; margin: 0; background: #f0f2f5; height: 100vh; display: flex; flex-direction: column; }
+        header { background: #1a2a6c; color: white; padding: 1rem; text-align: center; font-weight: bold; }
+        #app-container { flex: 1; overflow-y: auto; padding: 15px; position: relative; }
+        
+        /* Profile Selection Styles */
+        .profile-card { background: white; padding: 1.2rem; margin-bottom: 10px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        
+        /* Chat Hidden by Default */
+        .chat-box { display: none; flex-direction: column; height: calc(100vh - 120px); }
+        
+        /* Message Bubbles */
+        #messages { flex: 1; overflow-y: auto; display: flex; flex-direction: column; padding-bottom: 20px; }
+        .msg { margin: 10px 0; padding: 15px; border-radius: 18px; max-width: 85%; line-height: 1.4; position: relative; }
+        .user-msg { background: #0084ff; color: white; align-self: flex-end; margin-left: auto; border-bottom-right-radius: 4px; }
+        .tutor-msg { background: white; color: #1c1e21; align-self: flex-start; border-bottom-left-radius: 4px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+        
+        /* Content Segmentation */
+        .spanish { display: block; font-size: 1.1rem; color: #050505; font-weight: 500; margin-bottom: 8px; }
+        .correction { margin-top: 10px; margin-bottom: 10px; line-height: 1.5; display: block; background: #fff9db; color: #856404; padding: 10px; border-radius: 8px; border-left: 5px solid #fadb14; margin: 8px 0; font-size: 0.9rem; }
+        .english { display: block; color: #65676b; font-size: 0.9rem; font-style: italic; border-top: 1px solid #ebedf0; padding-top: 8px; margin-top: 5px; }
+        
+        .timer { font-size: 0.65rem; color: #bcc0c4; margin-top: 5px; display: block; }
+        
+        /* Forms and Inputs */
+        #edit-form-container { display: none; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .input-area { display: flex; padding: 10px; background: white; border-top: 1px solid #ddd; gap: 10px; position: sticky; bottom: 0; }
+        input { flex: 1; border: 1px solid #ced4da; border-radius: 20px; padding: 10px 15px; outline: none; }
+        button { border-radius: 20px; padding: 10px 20px; border: none; background: #0084ff; color: white; font-weight: 600; cursor: pointer; }
+        .edit-btn { background: #e4e6eb; color: #050505; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+    <header><h2 id="title">Spanish Tutor Pi</h2></header>
+    <div id="app-container">
+        <div id="profile-selection">
+            <div id="profile-list"></div>
+        </div>
+
+        <div id="edit-form-container">
+            <h3>Student Settings</h3>
+            <div style="margin-bottom:15px">
+                <label>Name:</label><br>
+                <input type="text" id="edit-name" style="width:90%">
+            </div>
+            <div style="margin-bottom:15px">
+                <label>Spanish Level:</label><br>
+                <select id="edit-level" style="width:100%; padding:8px;">
+                    <option value="A1">A1 - Beginner</option>
+                    <option value="A2">A2 - Elementary</option>
+                    <option value="B1">B1 - Intermediate</option>
+                    <option value="B2">B2 - Upper Intermediate</option>
+                </select>
+            </div>
+            <div style="margin-bottom:15px">
+                <label>English Help:</label><br>
+                <select id="edit-english" style="width:100%; padding:8px;">
+                    <option value="always">Always (Full Translation)</option>
+                    <option value="sometimes">Sometimes (Corrections Only)</option>
+                    <option value="never">Never (Immersion)</option>
+                </select>
+            </div>
+            <input type="hidden" id="edit-style" value="gentle">
+            <button onclick="saveProfileChanges()" style="width:100%; margin-bottom:10px;">Save Profile</button>
+            <button onclick="hideEditForm()" style="width:100%; background:#95a5a6;">Cancel</button>
+        </div>
+
+        <div id="chat-ui" class="chat-box">
+            <div id="messages"></div>
+            <div class="input-area">
+                <input type="text" id="user-input" placeholder="Escribe en español...">
+                <button onclick="sendMessage()">Send</button>
+            </div>
+            <button onclick="exitChat()" style="background:#e74c3c; margin-top:10px; border-radius:10px;">End Session</button>
+        </div>
+    </div>
+    <script src="/static/app.js"></script>
+</body>
+</html>

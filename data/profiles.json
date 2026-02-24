@@ -1,12 +1,12 @@
 [
   {
     "id": "student1",
-    "display_name": "New Student",
+    "display_name": "Cori\u00f1o",
     "level": "A1",
-    "speech_speed": "normal",
-    "english_help": "high",
     "correction_style": "gentle",
-    "allowed_tenses": ["present"],
-    "challenge_level": "low"
+    "english_help": "always",
+    "allowed_tenses": [
+      "present"
+    ]
   }
 ]
